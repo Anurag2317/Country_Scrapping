@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Country Data</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            text-align: center;
+            padding: 8px;
+        }
+        th {
+            background-color: blueviolet;
+            color: white;
+        }
+        #loading {
+            font-size: 20px;
+            text-align: center;
+            margin-top: 20%;
+        }
+        #content {
+            font-size: 20px;
+            text-align: center;
+            margin-top: 20%;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <h1>Scraped Country Data</h1>
+        <div id="loading">Loading data...</div>
+        <div id="content" style="display:none;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sr</th>
+                        <th>Country</th>
+                        <th>Country Code</th>
+                        <th>Iso Codes</th>
+                        <th>Population</th>
+                        <th>Area Km²</th>
+                        <th>GDP $USD</th>
+                        <th>Capital</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for country in data %}
+                    <tr>
+                        <td>{{ country.Sr }}</td>
+                        <td>{{ country.COUNTRY }}</td>
+                        <td>{{ country['COUNTRY CODE'] }}</td>
+                        <td>{{ country['ISO CODES'] }}</td>
+                        <td>{{ country.POPULATION }}</td>
+                        <td>{{ country['AREA KM2'] }}</td>
+                        <td>{{ country['GDP $USD'] }}</td>
+                        <td>{{ country.Capital }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </center>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Simulate loading data with a timeout
+            setTimeout(function() {
+                // Hide the loading message
+                document.getElementById('loading').style.display = 'none';
+                
+                // Show the content
+                document.getElementById('content').style.display = 'block';
+            }, 3000); // 3 seconds delay to simulate loading time
+        });
+    </script>
+</body>
+</html>
